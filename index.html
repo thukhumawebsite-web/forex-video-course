@@ -1,58 +1,705 @@
-[
-  {
-    "id": 1,
-    "category": "basic",
-    "episode": "Episode 01",
-    "title": "What is Forex Trading",
-    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2001%20%20what%20is%20forex%20Trading..mp4",
-    "desc": "Forex Trading ၏ အခြေခံသဘောတရားများ၊ ဈေးကွက်လည်ပတ်ပုံနှင့် မဖြစ်မနေ သိထားသင့်သည့် အချက်များ။"
-  },
-  {
-    "id": 2,
-    "category": "basic",
-    "episode": "Episode 02",
-    "title": "Who Trade in Forex",
-    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2002%20WHO%20TRADE%20IN%20FOREX.mp4",
-    "desc": "Forex Market တွင် ပါဝင်အရောင်းအဝယ်ပြုလုပ်ကြသော Central Banks, Financial Institutions နှင့် Retail Traders များအကြောင်း။"
-  },
-  {
-    "id": 3,
-    "category": "basic",
-    "episode": "Episode 03",
-    "title": "Currency and Currency Pair",
-    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2003%20CURRENCY%20AND%20CURRENCY%20PAIR.mp4",
-    "desc": "Major Pairs, Minor Pairs နှင့် Exotic Pairs ခွဲခြားပုံ၊ Base Currency နှင့် Quote Currency သဘောတရားများ။"
-  },
-  {
-    "id": 4,
-    "category": "basic",
-    "episode": "Episode 04",
-    "title": "What is Broker",
-    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2004%20WHAT%20IS%20BROKER.mp4",
-    "desc": "Forex Broker ဆိုတာဘာလဲ၊ ယုံကြည်စိတ်ချရသော Broker ရွေးချယ်နည်းနှင့် Spread, Commission သဘောတရားများ။"
-  },
-  {
-    "id": 5,
-    "category": "basic",
-    "episode": "Episode 05",
-    "title": "MetaTrader 5 and Demo Account Opening",
-    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2005%20METATRADER%205%20AND%20DEMO%20TRADING%20ACCOUNT%20OPENING.mp4",
-    "desc": "MT5 Platform အသုံးပြုပုံနှင့် Demo Account စတင်ဖွင့်လှစ်ပြီး လက်တွေ့လေ့ကျင့်ပုံ အဆင့်ဆင့်။"
-  },
-  {
-    "id": 6,
-    "category": "basic",
-    "episode": "Episode 06",
-    "title": "Basic of Forex",
-    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2006%20BASIC%20OF%20FOREX.mp4",
-    "desc": "Pip, Lot Size, Leverage, Margin နှင့် Margin Call အစရှိသည့် မရှိမဖြစ် အခြေခံ Trading Terms များ။"
-  },
-  {
-    "id": 7,
-    "category": "basic",
-    "episode": "Episode 07",
-    "title": "Market Session and Orders",
-    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISDOE%2007%20MARKET%20SESSION%20AND%20ORDERS.mp4",
-    "desc": "London, New York, Tokyo Market Sessions များနှင့် Buy/Sell, Limit, Stop စသည့် Order အမျိုးအစားများ အသုံးပြုပုံ။"
-  }
-]
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forex Trading Masterclass</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+
+  <style>
+    body { font-family: 'Padauk', 'Plus Jakarta Sans', sans-serif; }
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #1e293b; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- ==================== 1. SITE-WIDE PASSWORD GATE ==================== -->
+  <div id="siteGate" class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl z-[100] flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 w-full max-w-sm text-center shadow-2xl space-y-6">
+      <div class="w-16 h-16 rounded-2xl bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 mx-auto flex items-center justify-center text-2xl font-bold shadow-inner">
+        🔒
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-white tracking-wide">Forex Masterclass</h2>
+        <p class="text-xs text-slate-400 mt-1.5">ဝင်ရောက်လေ့လာရန် Access Password ရိုက်ထည့်ပါ</p>
+      </div>
+
+      <form onsubmit="event.preventDefault(); verifySiteAccess();" class="space-y-4">
+        <div>
+          <input type="password" id="siteAccessInput" placeholder="Password..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-center text-white tracking-widest focus:outline-none focus:border-indigo-500 transition shadow-inner">
+          <p id="siteGateError" class="text-xs text-rose-500 mt-2 hidden">Password မှားယွင်းနေပါသည်။ ထပ်မံကြိုးစားပါ။</p>
+        </div>
+        <button id="unlockBtn" type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-xl text-xs transition duration-200 shadow-lg shadow-indigo-600/20">
+          Unlock Course ➔
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== 2. MAIN APP CONTAINER ==================== -->
+  <div id="appContainer" class="hidden flex-1 flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-lg text-white">
+            FX
+          </div>
+          <div>
+            <h1 class="text-base font-bold leading-none text-slate-100">Forex Trading Course</h1>
+            <span class="text-xs text-slate-400">Master Class Series</span>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+          <button id="adminBtn" onclick="openAdminModal()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3 py-1.5 rounded-lg transition font-medium flex items-center gap-1.5">
+            🔒 <span>Admin Login</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- Video Player Column -->
+      <div class="lg:col-span-2 space-y-4">
+        <div class="rounded-2xl overflow-hidden bg-black shadow-2xl border border-slate-800">
+          <video id="player" playsinline controls class="w-full aspect-video">
+            <source id="videoSource" src="" type="video/mp4" />
+          </video>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div class="flex items-center gap-2">
+              <span id="lessonCategoryBadge" class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 uppercase">
+                Basic
+              </span>
+              <span id="lessonBadge" class="text-xs font-medium px-2 py-1 rounded bg-slate-800 text-slate-300">
+                Episode 01
+              </span>
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                ⏱️ Full HD 1080p
+              </span>
+              <span id="resumeBadge" class="hidden text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
+                🔄 Resumed
+              </span>
+            </div>
+
+            <button id="downloadBtn" onclick="downloadCurrentVideo()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition duration-200 shadow-md">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+              </svg>
+              Download Video
+            </button>
+          </div>
+
+          <h2 id="lessonTitle" class="text-xl font-bold text-white">-</h2>
+          <p id="lessonDesc" class="text-sm text-slate-400 leading-relaxed">-</p>
+        </div>
+      </div>
+
+      <!-- Playlist Column with Tabs -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col h-[620px]">
+        
+        <!-- Header & Tabs -->
+        <div class="space-y-3 pb-3 border-b border-slate-800">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white flex items-center gap-2">
+              📚 သင်ခန်းစာများ
+            </h3>
+            <span id="totalLessons" class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded-md">
+              0 Episodes
+            </span>
+          </div>
+
+          <!-- Basic & Advanced Tab Switcher -->
+          <div class="grid grid-cols-2 gap-1.5 p-1 bg-slate-950/80 rounded-xl border border-slate-800">
+            <button id="tabBasic" onclick="switchCategoryTab('basic')" class="py-1.5 text-xs font-semibold rounded-lg transition flex items-center justify-center gap-1.5 bg-indigo-600 text-white shadow-sm">
+              <span>🌱 Basic</span>
+              <span id="basicCount" class="text-[10px] bg-indigo-800/80 px-1.5 py-0.2 rounded-full">0</span>
+            </button>
+            <button id="tabAdvanced" onclick="switchCategoryTab('advanced')" class="py-1.5 text-xs font-medium text-slate-400 hover:text-white rounded-lg transition flex items-center justify-center gap-1.5">
+              <span>🚀 Advanced</span>
+              <span id="advancedCount" class="text-[10px] bg-slate-800 px-1.5 py-0.2 rounded-full">0</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="adminControls" class="hidden pt-3">
+          <button onclick="openAddVideoModal()" class="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg flex items-center justify-center gap-2 transition shadow-md">
+            ➕ Video အသစ်ထည့်ရန်
+          </button>
+        </div>
+
+        <!-- Playlist Container -->
+        <div id="playlist" class="custom-scroll flex-1 overflow-y-auto space-y-2.5 pt-3 pr-1"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Admin Login Modal -->
+  <div id="loginModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-sm space-y-4 shadow-2xl">
+      <h3 class="text-base font-bold text-white">🔒 Admin Authentication</h3>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="text-slate-400 block mb-1">Password ရိုက်ထည့်ပါ</label>
+          <input type="password" id="adminPassword" placeholder="Enter Admin Password..." class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+        </div>
+        <p id="loginError" class="text-xs text-rose-500 hidden">Admin Password မှားယွင်းနေပါသည်။</p>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="closeModal('loginModal')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 py-2 rounded-lg text-xs font-medium">Cancel</button>
+        <button onclick="submitLogin()" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white py-2 rounded-lg text-xs font-medium">Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Video Modal -->
+  <div id="addVideoModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-md space-y-4 shadow-2xl">
+      <h3 class="text-base font-bold text-white">➕ သင်ခန်းစာအသစ် ထည့်သွင်းခြင်း</h3>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="text-slate-400 block mb-1">Course Level (Category)</label>
+          <select id="newCategory" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+            <option value="basic">🌱 Basic Course</option>
+            <option value="advanced">🚀 Advanced Course</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-slate-400 block mb-1">Episode အမှတ်</label>
+          <input type="text" id="newEpisode" placeholder="Episode 01" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+          <label class="text-slate-400 block mb-1">ခေါင်းစဉ် (Title)</label>
+          <input type="text" id="newTitle" placeholder="Order Block & Liquidity Concepts" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+          <label class="text-slate-400 block mb-1">Cloudflare R2 Video URL</label>
+          <input type="url" id="newUrl" placeholder="https://pub-xxxx.r2.dev/filename.mp4" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+          <label class="text-slate-400 block mb-1">အကြောင်းအရာ အကျဉ်းချုပ်</label>
+          <textarea id="newDesc" rows="2" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500"></textarea>
+        </div>
+      </div>
+      <div class="flex gap-2 pt-2">
+        <button onclick="closeModal('addVideoModal')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 py-2 rounded-lg text-xs font-medium">Cancel</button>
+        <button id="addSaveBtn" onclick="saveNewLesson()" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white py-2 rounded-lg text-xs font-medium">Add Video</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Video Modal -->
+  <div id="editVideoModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-md space-y-4 shadow-2xl">
+      <h3 class="text-base font-bold text-amber-400 flex items-center gap-2">✏️ သင်ခန်းစာ ပြင်ဆင်ခြင်း</h3>
+      <input type="hidden" id="editLessonId">
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="text-slate-400 block mb-1">Course Level (Category)</label>
+          <select id="editCategory" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-amber-500">
+            <option value="basic">🌱 Basic Course</option>
+            <option value="advanced">🚀 Advanced Course</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-slate-400 block mb-1">Episode အမှတ်</label>
+          <input type="text" id="editEpisode" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="text-slate-400 block mb-1">ခေါင်းစဉ် (Title)</label>
+          <input type="text" id="editTitle" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="text-slate-400 block mb-1">Cloudflare R2 Video URL</label>
+          <input type="url" id="editUrl" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="text-slate-400 block mb-1">အကြောင်းအရာ အကျဉ်းချုပ်</label>
+          <textarea id="editDesc" rows="2" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-amber-500"></textarea>
+        </div>
+      </div>
+      <div class="flex gap-2 pt-2">
+        <button onclick="closeModal('editVideoModal')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 py-2 rounded-lg text-xs font-medium">Cancel</button>
+        <button id="editSaveBtn" onclick="saveEditedLesson()" class="flex-1 bg-amber-600 hover:bg-amber-500 text-white py-2 rounded-lg text-xs font-medium">Update Lesson</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+
+  <script>
+    // ==================== SITE ACCESS GATE ====================
+    function checkSiteAccess() {
+      const isUnlocked = localStorage.getItem('fx_site_unlocked') === 'true';
+      if (isUnlocked) {
+        document.getElementById('siteGate').classList.add('hidden');
+        document.getElementById('appContainer').classList.remove('hidden');
+        initApp();
+      } else {
+        document.getElementById('siteGate').classList.remove('hidden');
+        document.getElementById('appContainer').classList.add('hidden');
+      }
+    }
+
+    async function verifySiteAccess() {
+      const input = document.getElementById('siteAccessInput').value.trim();
+      const unlockBtn = document.getElementById('unlockBtn');
+      const errEl = document.getElementById('siteGateError');
+
+      if (!input) return;
+
+      unlockBtn.disabled = true;
+      unlockBtn.innerText = "Verifying...";
+      errEl.classList.add('hidden');
+
+      try {
+        const res = await fetch('/api/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: input })
+        });
+
+        const data = await res.json();
+        if (res.ok && data.success) {
+          localStorage.setItem('fx_site_unlocked', 'true');
+          document.getElementById('siteGate').classList.add('hidden');
+          document.getElementById('appContainer').classList.remove('hidden');
+          initApp();
+        } else {
+          errEl.classList.remove('hidden');
+        }
+      } catch (err) {
+        if (input === 'ask') {
+          localStorage.setItem('fx_site_unlocked', 'true');
+          document.getElementById('siteGate').classList.add('hidden');
+          document.getElementById('appContainer').classList.remove('hidden');
+          initApp();
+        } else {
+          errEl.classList.remove('hidden');
+        }
+      } finally {
+        unlockBtn.disabled = false;
+        unlockBtn.innerText = "Unlock Course ➔";
+      }
+    }
+
+    // ==================== APPLICATION CORE ====================
+    let lessons = [];
+    let currentCategory = 'basic'; // 'basic' or 'advanced'
+    let currentPlayingId = null;
+    let savedAdminPass = sessionStorage.getItem('fx_admin_pass') || '';
+    let isAdmin = !!savedAdminPass;
+    let player = null;
+    let wakeLock = null;
+
+    function initApp() {
+      if (!player) {
+        player = new Plyr('#player', {
+          controls: ['play-large', 'restart', 'rewind', 'play', 'fast-forward', 'progress', 'current-time', 'duration', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
+          speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+        });
+
+        player.on('play', () => requestWakeLock());
+        player.on('pause', () => releaseWakeLock());
+        player.on('ended', () => {
+          releaseWakeLock();
+          const cur = lessons.find(l => l.id === currentPlayingId);
+          if (cur) localStorage.removeItem(`fx_progress_${cur.url}`);
+        });
+
+        player.on('timeupdate', () => {
+          const cur = lessons.find(l => l.id === currentPlayingId);
+          if (cur && player.currentTime > 2) {
+            localStorage.setItem(`fx_progress_${cur.url}`, player.currentTime);
+            localStorage.setItem('fx_last_played_id', currentPlayingId);
+          }
+        });
+
+        player.on('loadedmetadata', () => {
+          const cur = lessons.find(l => l.id === currentPlayingId);
+          if (cur) {
+            const savedTime = parseFloat(localStorage.getItem(`fx_progress_${cur.url}`));
+            if (savedTime && savedTime > 3 && savedTime < (player.duration - 5)) {
+              player.currentTime = savedTime;
+              const badge = document.getElementById('resumeBadge');
+              badge.classList.remove('hidden');
+              setTimeout(() => badge.classList.add('hidden'), 4000);
+            }
+          }
+        });
+      }
+
+      updateAdminUI();
+      fetchLessons();
+    }
+
+    async function requestWakeLock() {
+      try {
+        if ('wakeLock' in navigator && !wakeLock) {
+          wakeLock = await navigator.wakeLock.request('screen');
+          wakeLock.addEventListener('release', () => { wakeLock = null; });
+        }
+      } catch (err) {}
+    }
+    async function releaseWakeLock() {
+      if (wakeLock !== null) {
+        await wakeLock.release();
+        wakeLock = null;
+      }
+    }
+
+    async function fetchLessons() {
+      try {
+        const res = await fetch(`lessons.json?t=${Date.now()}`);
+        if (res.ok) {
+          lessons = await res.json();
+        }
+      } catch (e) {
+        lessons = JSON.parse(localStorage.getItem('fx_lessons_v3')) || [];
+      }
+
+      // Default category fallback for older data
+      lessons = lessons.map(l => ({
+        category: 'basic',
+        ...l
+      }));
+      
+      const lastId = parseInt(localStorage.getItem('fx_last_played_id'));
+      const found = lessons.find(l => l.id === lastId);
+      
+      if (found) {
+        currentCategory = found.category || 'basic';
+        currentPlayingId = found.id;
+      } else if (lessons.length > 0) {
+        currentPlayingId = lessons[0].id;
+        currentCategory = lessons[0].category || 'basic';
+      }
+
+      updateTabUI();
+      renderPlaylist();
+      if (currentPlayingId) playLessonById(currentPlayingId, false);
+    }
+
+    function switchCategoryTab(cat) {
+      currentCategory = cat;
+      updateTabUI();
+      renderPlaylist();
+    }
+
+    function updateTabUI() {
+      const tabBasic = document.getElementById('tabBasic');
+      const tabAdvanced = document.getElementById('tabAdvanced');
+      const basicCount = lessons.filter(l => (l.category || 'basic') === 'basic').length;
+      const advancedCount = lessons.filter(l => l.category === 'advanced').length;
+
+      document.getElementById('basicCount').textContent = basicCount;
+      document.getElementById('advancedCount').textContent = advancedCount;
+
+      if (currentCategory === 'basic') {
+        tabBasic.className = "py-1.5 text-xs font-semibold rounded-lg transition flex items-center justify-center gap-1.5 bg-indigo-600 text-white shadow-sm";
+        tabAdvanced.className = "py-1.5 text-xs font-medium text-slate-400 hover:text-white rounded-lg transition flex items-center justify-center gap-1.5";
+      } else {
+        tabAdvanced.className = "py-1.5 text-xs font-semibold rounded-lg transition flex items-center justify-center gap-1.5 bg-indigo-600 text-white shadow-sm";
+        tabBasic.className = "py-1.5 text-xs font-medium text-slate-400 hover:text-white rounded-lg transition flex items-center justify-center gap-1.5";
+      }
+    }
+
+    function renderPlaylist() {
+      const playlistEl = document.getElementById('playlist');
+      const totalLessonsEl = document.getElementById('totalLessons');
+      
+      const filtered = lessons.filter(l => (l.category || 'basic') === currentCategory);
+      totalLessonsEl.textContent = `${filtered.length} Episodes`;
+      playlistEl.innerHTML = '';
+
+      if (filtered.length === 0) {
+        playlistEl.innerHTML = `
+          <div class="h-48 flex flex-col items-center justify-center text-center p-4 text-slate-500 space-y-2">
+            <span class="text-3xl">⏳</span>
+            <p class="text-xs">သင်ခန်းစာများ မရှိသေးပါ။ မကြာမီ လာမည်။</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach((lesson, index) => {
+        const isActive = lesson.id === currentPlayingId;
+        const item = document.createElement('div');
+        
+        item.className = `p-3 rounded-xl transition flex items-center justify-between border group ${
+          isActive 
+            ? 'bg-indigo-600/15 border-indigo-500 text-white shadow-md' 
+            : 'bg-slate-950/60 border-slate-800/80 hover:bg-slate-800 text-slate-300'
+        }`;
+
+        item.innerHTML = `
+          <div class="flex items-center space-x-3 overflow-hidden cursor-pointer flex-1" onclick="playLessonById(${lesson.id}, true)">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 ${
+              isActive ? 'bg-indigo-600 text-white' : 'bg-slate-800 text-slate-400'
+            }">
+              ${isActive ? '▶' : index + 1}
+            </div>
+            <div class="truncate">
+              <span class="text-xs ${isActive ? 'text-indigo-400 font-semibold' : 'text-slate-400'} block">${lesson.episode}</span>
+              <h4 class="text-sm font-medium truncate">${lesson.title}</h4>
+            </div>
+          </div>
+          ${isAdmin ? `
+            <div class="flex items-center gap-1 ml-2">
+              <button onclick="openEditModal(${lesson.id})" title="Edit" class="text-amber-400 hover:text-amber-300 text-xs p-1.5 rounded bg-amber-500/10 hover:bg-amber-500/20 transition">✏️</button>
+              <button onclick="deleteLesson(${lesson.id})" title="Delete" class="text-rose-400 hover:text-rose-300 text-xs p-1.5 rounded bg-rose-500/10 hover:bg-rose-500/20 transition">🗑️</button>
+            </div>
+          ` : ''}
+        `;
+
+        playlistEl.appendChild(item);
+      });
+    }
+
+    function playLessonById(id, autoplay = false) {
+      const lesson = lessons.find(l => l.id === id);
+      if (!lesson) return;
+
+      currentPlayingId = id;
+      localStorage.setItem('fx_last_played_id', id);
+
+      player.source = {
+        type: 'video',
+        title: lesson.title,
+        sources: [{ src: lesson.url, type: 'video/mp4' }]
+      };
+
+      document.getElementById('lessonCategoryBadge').textContent = (lesson.category || 'basic');
+      document.getElementById('lessonBadge').textContent = lesson.episode;
+      document.getElementById('lessonTitle').textContent = `${lesson.episode} - ${lesson.title}`;
+      document.getElementById('lessonDesc').textContent = lesson.desc;
+
+      renderPlaylist();
+      if (autoplay) player.play().catch(() => {});
+    }
+
+    async function callBackendSync(updatedLessons, message) {
+      try {
+        const res = await fetch('/api/update', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            password: savedAdminPass,
+            lessons: updatedLessons,
+            message: message
+          })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          localStorage.setItem('fx_lessons_v3', JSON.stringify(updatedLessons));
+          return true;
+        } else {
+          alert("Sync Error: " + (data.message || "Failed to update"));
+          return false;
+        }
+      } catch (err) {
+        alert("Network Error: " + err.message);
+        return false;
+      }
+    }
+
+    async function downloadCurrentVideo() {
+      const cur = lessons.find(l => l.id === currentPlayingId);
+      if (!cur) return;
+      
+      const btn = document.getElementById('downloadBtn');
+      const org = btn.innerHTML;
+
+      try {
+        btn.disabled = true;
+        btn.innerHTML = `⏳ Downloading...`;
+        const res = await fetch(cur.url);
+        const blob = await res.blob();
+        const blobUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = `${cur.episode} - ${cur.title}.mp4`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(blobUrl);
+      } catch (err) {
+        window.open(cur.url, '_blank');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = org;
+      }
+    }
+
+    // Modal Control
+    function openAdminModal() {
+      if (isAdmin) {
+        if (confirm("Admin Account မှ ထွက်မည်လား?")) {
+          isAdmin = false;
+          savedAdminPass = '';
+          sessionStorage.removeItem('fx_admin_pass');
+          updateAdminUI();
+          renderPlaylist();
+        }
+      } else {
+        document.getElementById('loginModal').classList.remove('hidden');
+      }
+    }
+
+    function openAddVideoModal() {
+      document.getElementById('newCategory').value = currentCategory;
+      document.getElementById('addVideoModal').classList.remove('hidden');
+    }
+
+    function openEditModal(id) {
+      const lesson = lessons.find(l => l.id === id);
+      if (!lesson) return;
+
+      document.getElementById('editLessonId').value = lesson.id;
+      document.getElementById('editCategory').value = lesson.category || 'basic';
+      document.getElementById('editEpisode').value = lesson.episode;
+      document.getElementById('editTitle').value = lesson.title;
+      document.getElementById('editUrl').value = lesson.url;
+      document.getElementById('editDesc').value = lesson.desc;
+      document.getElementById('editVideoModal').classList.remove('hidden');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+      document.getElementById('loginError').classList.add('hidden');
+    }
+
+    function submitLogin() {
+      const pass = document.getElementById('adminPassword').value;
+      if (pass === '001') {
+        isAdmin = true;
+        savedAdminPass = pass;
+        sessionStorage.setItem('fx_admin_pass', pass);
+        document.getElementById('adminPassword').value = '';
+        closeModal('loginModal');
+        updateAdminUI();
+        renderPlaylist();
+      } else {
+        document.getElementById('loginError').classList.remove('hidden');
+      }
+    }
+
+    function updateAdminUI() {
+      const btn = document.getElementById('adminBtn');
+      const controls = document.getElementById('adminControls');
+      if (isAdmin) {
+        btn.innerHTML = '🔓 <span>Logout</span>';
+        btn.classList.add('border-emerald-500/40', 'text-emerald-400');
+        controls.classList.remove('hidden');
+      } else {
+        btn.innerHTML = '🔒 <span>Admin Login</span>';
+        btn.classList.remove('border-emerald-500/40', 'text-emerald-400');
+        controls.classList.add('hidden');
+      }
+    }
+
+    async function saveNewLesson() {
+      const category = document.getElementById('newCategory').value;
+      const episode = document.getElementById('newEpisode').value.trim();
+      const title = document.getElementById('newTitle').value.trim();
+      const url = document.getElementById('newUrl').value.trim();
+      const desc = document.getElementById('newDesc').value.trim();
+
+      if (!episode || !title || !url) {
+        alert("အချက်အလက်များကို ပြည့်စုံစွာ ဖြည့်ပါ။");
+        return;
+      }
+
+      const saveBtn = document.getElementById('addSaveBtn');
+      saveBtn.disabled = true;
+      saveBtn.innerText = "Syncing to GitHub...";
+
+      const newId = Date.now();
+      const updated = [...lessons, { id: newId, category, episode, title, url, desc: desc || "" }];
+      const ok = await callBackendSync(updated, `Add ${category} video: ${episode}`);
+      
+      saveBtn.disabled = false;
+      saveBtn.innerText = "Add Video";
+
+      if (ok) {
+        lessons = updated;
+        currentCategory = category;
+        closeModal('addVideoModal');
+        updateTabUI();
+        renderPlaylist();
+        playLessonById(newId, true);
+      }
+    }
+
+    async function saveEditedLesson() {
+      const id = parseInt(document.getElementById('editLessonId').value);
+      const category = document.getElementById('editCategory').value;
+      const episode = document.getElementById('editEpisode').value.trim();
+      const title = document.getElementById('editTitle').value.trim();
+      const url = document.getElementById('editUrl').value.trim();
+      const desc = document.getElementById('editDesc').value.trim();
+
+      if (!episode || !title || !url) {
+        alert("အချက်အလက်များကို ပြည့်စုံစွာ ဖြည့်ပါ။");
+        return;
+      }
+
+      const saveBtn = document.getElementById('editSaveBtn');
+      saveBtn.disabled = true;
+      saveBtn.innerText = "Updating...";
+
+      const updated = lessons.map(l => l.id === id ? { ...l, category, episode, title, url, desc } : l);
+      const ok = await callBackendSync(updated, `Update video: ${episode}`);
+
+      saveBtn.disabled = false;
+      saveBtn.innerText = "Update Lesson";
+
+      if (ok) {
+        lessons = updated;
+        closeModal('editVideoModal');
+        updateTabUI();
+        if (currentPlayingId === id) {
+          playLessonById(id, false);
+        } else {
+          renderPlaylist();
+        }
+      }
+    }
+
+    async function deleteLesson(id) {
+      const target = lessons.find(l => l.id === id);
+      if (!target) return;
+
+      if (confirm(`"${target.title}" ကို ဖျက်ရန် သေချာပါသလား?`)) {
+        localStorage.removeItem(`fx_progress_${target.url}`);
+        const updated = lessons.filter(l => l.id !== id);
+        const ok = await callBackendSync(updated, `Delete video: ${target.episode}`);
+        if (ok) {
+          lessons = updated;
+          updateTabUI();
+          const filtered = lessons.filter(l => (l.category || 'basic') === currentCategory);
+          if (filtered.length > 0) {
+            playLessonById(filtered[0].id, false);
+          } else {
+            renderPlaylist();
+          }
+        }
+      }
+    }
+
+    checkSiteAccess();
+  </script>
+</body>
+</html>
