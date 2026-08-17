@@ -18,97 +18,123 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-lg text-white">
-          FX
-        </div>
+  <!-- ==================== 1. SITE-WIDE PASSWORD GATE ==================== -->
+  <div id="siteGate" class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl z-[100] flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 w-full max-w-sm text-center shadow-2xl space-y-6">
+      <div class="w-16 h-16 rounded-2xl bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 mx-auto flex items-center justify-center text-2xl font-bold shadow-inner">
+        🔒
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-white tracking-wide">Forex Masterclass</h2>
+        <p class="text-xs text-slate-400 mt-1.5">ဝင်ရောက်လေ့လာရန် Access Password ရိုက်ထည့်ပါ</p>
+      </div>
+
+      <form onsubmit="event.preventDefault(); verifySiteAccess();" class="space-y-4">
         <div>
-          <h1 class="text-base font-bold leading-none text-slate-100">Forex Trading Course</h1>
-          <span class="text-xs text-slate-400">Master Class Series</span>
+          <input type="password" id="siteAccessInput" placeholder="Password..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-center text-white tracking-widest focus:outline-none focus:border-indigo-500 transition shadow-inner">
+          <p id="siteGateError" class="text-xs text-rose-500 mt-2 hidden">Password မှားယွင်းနေပါသည်။ ထပ်မံကြိုးစားပါ။</p>
+        </div>
+        <button id="unlockBtn" type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-xl text-xs transition duration-200 shadow-lg shadow-indigo-600/20">
+          Unlock Course ➔
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== 2. MAIN APP CONTAINER ==================== -->
+  <div id="appContainer" class="hidden flex-1 flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-lg text-white">
+            FX
+          </div>
+          <div>
+            <h1 class="text-base font-bold leading-none text-slate-100">Forex Trading Course</h1>
+            <span class="text-xs text-slate-400">Master Class Series</span>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+          <button id="adminBtn" onclick="openAdminModal()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3 py-1.5 rounded-lg transition font-medium flex items-center gap-1.5">
+            🔒 <span>Admin Login</span>
+          </button>
         </div>
       </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
       
-      <div class="flex items-center gap-3">
-        <button id="adminBtn" onclick="openAdminModal()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3 py-1.5 rounded-lg transition font-medium flex items-center gap-1.5">
-          🔒 <span>Admin Login</span>
-        </button>
-      </div>
-    </div>
-  </header>
+      <!-- Video Player Column -->
+      <div class="lg:col-span-2 space-y-4">
+        <div class="rounded-2xl overflow-hidden bg-black shadow-2xl border border-slate-800">
+          <video id="player" playsinline controls class="w-full aspect-video">
+            <source id="videoSource" src="" type="video/mp4" />
+          </video>
+        </div>
 
-  <!-- Main Container -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
-    
-    <!-- Video Player Box -->
-    <div class="lg:col-span-2 space-y-4">
-      <div class="rounded-2xl overflow-hidden bg-black shadow-2xl border border-slate-800">
-        <video id="player" playsinline controls class="w-full aspect-video">
-          <source id="videoSource" src="" type="video/mp4" />
-        </video>
-      </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div class="flex items-center gap-2">
+              <span id="lessonBadge" class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-600/20 text-indigo-400 border border-indigo-500/30">
+                Episode 01
+              </span>
+              <span class="text-xs text-slate-400 flex items-center gap-1">
+                ⏱️ Full HD 1080p
+              </span>
+              <span id="resumeBadge" class="hidden text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
+                🔄 Resumed
+              </span>
+            </div>
 
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
-        <div class="flex items-center justify-between flex-wrap gap-2">
-          <div class="flex items-center gap-2">
-            <span id="lessonBadge" class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-600/20 text-indigo-400 border border-indigo-500/30">
-              Episode 01
-            </span>
-            <span class="text-xs text-slate-400 flex items-center gap-1">
-              ⏱️ Full HD 1080p
-            </span>
-            <span id="resumeBadge" class="hidden text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
-              🔄 Resumed
-            </span>
+            <button id="downloadBtn" onclick="downloadCurrentVideo()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition duration-200 shadow-md">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+              </svg>
+              Download Video
+            </button>
           </div>
 
-          <button id="downloadBtn" onclick="downloadCurrentVideo()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition duration-200 shadow-md">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-            </svg>
-            Download Video
+          <h2 id="lessonTitle" class="text-xl font-bold text-white">-</h2>
+          <p id="lessonDesc" class="text-sm text-slate-400 leading-relaxed">-</p>
+        </div>
+      </div>
+
+      <!-- Playlist Column -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col h-[600px]">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <h3 class="font-bold text-white flex items-center gap-2">
+            📚 သင်ခန်းစာများ (Playlist)
+          </h3>
+          <span id="totalLessons" class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded-md">
+            0 Episodes
+          </span>
+        </div>
+
+        <div id="adminControls" class="hidden pt-3">
+          <button onclick="openAddVideoModal()" class="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+            ➕ Video အသစ်ထည့်ရန်
           </button>
         </div>
 
-        <h2 id="lessonTitle" class="text-xl font-bold text-white">-</h2>
-        <p id="lessonDesc" class="text-sm text-slate-400 leading-relaxed">-</p>
-      </div>
-    </div>
-
-    <!-- Playlist Sidebar -->
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col h-[600px]">
-      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
-        <h3 class="font-bold text-white flex items-center gap-2">
-          📚 သင်ခန်းစာများ (Playlist)
-        </h3>
-        <span id="totalLessons" class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded-md">
-          0 Episodes
-        </span>
+        <div id="playlist" class="custom-scroll flex-1 overflow-y-auto space-y-2.5 pt-4 pr-1"></div>
       </div>
 
-      <div id="adminControls" class="hidden pt-3">
-        <button onclick="openAddVideoModal()" class="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg flex items-center justify-center gap-2 transition">
-          ➕ Video အသစ်ထည့်ရန် (Auto Sync)
-        </button>
-      </div>
+    </main>
+  </div>
 
-      <div id="playlist" class="custom-scroll flex-1 overflow-y-auto space-y-2.5 pt-4 pr-1"></div>
-    </div>
-
-  </main>
-
-  <!-- Login Modal -->
+  <!-- Admin Login Modal -->
   <div id="loginModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-sm space-y-4 shadow-2xl">
       <h3 class="text-base font-bold text-white">🔒 Admin Authentication</h3>
       <div class="space-y-3 text-xs">
         <div>
           <label class="text-slate-400 block mb-1">Password ရိုက်ထည့်ပါ</label>
-          <input type="password" id="adminPassword" placeholder="001" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+          <input type="password" id="adminPassword" placeholder="Enter Admin Password..." class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
         </div>
-        <p id="loginError" class="text-xs text-rose-500 hidden">Password မှားယွင်းနေပါသည်။</p>
+        <p id="loginError" class="text-xs text-rose-500 hidden">Admin Password မှားယွင်းနေပါသည်။</p>
       </div>
       <div class="flex gap-2">
         <button onclick="closeModal('loginModal')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 py-2 rounded-lg text-xs font-medium">Cancel</button>
@@ -179,18 +205,111 @@
   <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
   <script>
+    // ==================== SITE ACCESS VERIFICATION VIA VERCEL API ====================
+    function checkSiteAccess() {
+      const isUnlocked = localStorage.getItem('fx_site_unlocked') === 'true';
+      if (isUnlocked) {
+        document.getElementById('siteGate').classList.add('hidden');
+        document.getElementById('appContainer').classList.remove('hidden');
+        initApp();
+      } else {
+        document.getElementById('siteGate').classList.remove('hidden');
+        document.getElementById('appContainer').classList.add('hidden');
+      }
+    }
+
+    async function verifySiteAccess() {
+      const input = document.getElementById('siteAccessInput').value.trim();
+      const unlockBtn = document.getElementById('unlockBtn');
+      const errEl = document.getElementById('siteGateError');
+
+      if (!input) return;
+
+      unlockBtn.disabled = true;
+      unlockBtn.innerText = "Verifying...";
+      errEl.classList.add('hidden');
+
+      try {
+        const res = await fetch('/api/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: input })
+        });
+
+        const data = await res.json();
+        if (res.ok && data.success) {
+          localStorage.setItem('fx_site_unlocked', 'true');
+          document.getElementById('siteGate').classList.add('hidden');
+          document.getElementById('appContainer').classList.remove('hidden');
+          initApp();
+        } else {
+          errEl.classList.remove('hidden');
+        }
+      } catch (err) {
+        // Fallback check if local development without serverless function
+        if (input === 'ask') {
+          localStorage.setItem('fx_site_unlocked', 'true');
+          document.getElementById('siteGate').classList.add('hidden');
+          document.getElementById('appContainer').classList.remove('hidden');
+          initApp();
+        } else {
+          errEl.classList.remove('hidden');
+        }
+      } finally {
+        unlockBtn.disabled = false;
+        unlockBtn.innerText = "Unlock Course ➔";
+      }
+    }
+
+    // ==================== APPLICATION CORE ====================
     let lessons = [];
     let savedAdminPass = sessionStorage.getItem('fx_admin_pass') || '';
     let isAdmin = !!savedAdminPass;
     let currentLessonIndex = parseInt(localStorage.getItem('fx_last_lesson_index')) || 0;
-
-    const player = new Plyr('#player', {
-      controls: ['play-large', 'restart', 'rewind', 'play', 'fast-forward', 'progress', 'current-time', 'duration', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
-      speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
-    });
-
-    // Screen WakeLock
+    let player = null;
     let wakeLock = null;
+
+    function initApp() {
+      if (!player) {
+        player = new Plyr('#player', {
+          controls: ['play-large', 'restart', 'rewind', 'play', 'fast-forward', 'progress', 'current-time', 'duration', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
+          speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+        });
+
+        player.on('play', () => requestWakeLock());
+        player.on('pause', () => releaseWakeLock());
+        player.on('ended', () => {
+          releaseWakeLock();
+          const cur = lessons[currentLessonIndex];
+          if (cur) localStorage.removeItem(`fx_progress_${cur.url}`);
+        });
+
+        player.on('timeupdate', () => {
+          const cur = lessons[currentLessonIndex];
+          if (cur && player.currentTime > 2) {
+            localStorage.setItem(`fx_progress_${cur.url}`, player.currentTime);
+            localStorage.setItem('fx_last_lesson_index', currentLessonIndex);
+          }
+        });
+
+        player.on('loadedmetadata', () => {
+          const cur = lessons[currentLessonIndex];
+          if (cur) {
+            const savedTime = parseFloat(localStorage.getItem(`fx_progress_${cur.url}`));
+            if (savedTime && savedTime > 3 && savedTime < (player.duration - 5)) {
+              player.currentTime = savedTime;
+              const badge = document.getElementById('resumeBadge');
+              badge.classList.remove('hidden');
+              setTimeout(() => badge.classList.add('hidden'), 4000);
+            }
+          }
+        });
+      }
+
+      updateAdminUI();
+      fetchLessons();
+    }
+
     async function requestWakeLock() {
       try {
         if ('wakeLock' in navigator && !wakeLock) {
@@ -206,36 +325,6 @@
       }
     }
 
-    player.on('play', () => requestWakeLock());
-    player.on('pause', () => releaseWakeLock());
-    player.on('ended', () => {
-      releaseWakeLock();
-      const cur = lessons[currentLessonIndex];
-      if (cur) localStorage.removeItem(`fx_progress_${cur.url}`);
-    });
-
-    player.on('timeupdate', () => {
-      const cur = lessons[currentLessonIndex];
-      if (cur && player.currentTime > 2) {
-        localStorage.setItem(`fx_progress_${cur.url}`, player.currentTime);
-        localStorage.setItem('fx_last_lesson_index', currentLessonIndex);
-      }
-    });
-
-    player.on('loadedmetadata', () => {
-      const cur = lessons[currentLessonIndex];
-      if (cur) {
-        const savedTime = parseFloat(localStorage.getItem(`fx_progress_${cur.url}`));
-        if (savedTime && savedTime > 3 && savedTime < (player.duration - 5)) {
-          player.currentTime = savedTime;
-          const badge = document.getElementById('resumeBadge');
-          badge.classList.remove('hidden');
-          setTimeout(() => badge.classList.add('hidden'), 4000);
-        }
-      }
-    });
-
-    // Fetch Lessons from lessons.json
     async function fetchLessons() {
       try {
         const res = await fetch(`lessons.json?t=${Date.now()}`);
@@ -251,7 +340,6 @@
       if (lessons.length > 0) switchLesson(currentLessonIndex, false);
     }
 
-    // Call Backend API Route (/api/update) to sync to GitHub
     async function callBackendSync(updatedLessons, message) {
       try {
         const res = await fetch('/api/update', {
@@ -276,11 +364,6 @@
         alert("Network Error: " + err.message);
         return false;
       }
-    }
-
-    function init() {
-      updateAdminUI();
-      fetchLessons();
     }
 
     function renderPlaylist() {
@@ -344,7 +427,6 @@
       if (autoplay) player.play().catch(() => {});
     }
 
-    // Video Download
     async function downloadCurrentVideo() {
       if (!lessons[currentLessonIndex]) return;
       const cur = lessons[currentLessonIndex];
@@ -372,7 +454,6 @@
       }
     }
 
-    // Admin Modals
     function openAdminModal() {
       if (isAdmin) {
         if (confirm("Admin Account မှ ထွက်မည်လား?")) {
@@ -514,7 +595,8 @@
       }
     }
 
-    init();
+    // Run Security Gate Check on initial load
+    checkSiteAccess();
   </script>
 </body>
 </html>
