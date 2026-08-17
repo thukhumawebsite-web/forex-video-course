@@ -1,13 +1,11 @@
 export default async function handler(req, res) {
-  // POST Request သာ ခွင့်ပြုမည်
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
   const { password, lessons, message } = req.body;
-
-  // Password စစ်ဆေးခြင်း
   const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '001';
+
   if (password !== ADMIN_PASSWORD) {
     return res.status(401).json({ message: 'Invalid Admin Password' });
   }
@@ -23,7 +21,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 1. GitHub မှ လက်ရှိ File SHA ရယူခြင်း
     const getUrl = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}?ref=${GH_BRANCH}`;
     const getRes = await fetch(getUrl, {
       headers: {
@@ -38,7 +35,6 @@ export default async function handler(req, res) {
       fileSha = fileData.sha;
     }
 
-    // 2. Base64 Encode လုပ်ပြီး GitHub သို့ Auto Commit ပို့ခြင်း
     const contentBase64 = Buffer.from(JSON.stringify(lessons, null, 2)).toString('base64');
     const putUrl = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`;
 
