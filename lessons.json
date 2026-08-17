@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "episode": "Episode 01",
+    "title": "What is Forex Trading",
+    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2001%20%20what%20is%20forex%20Trading..mp4",
+    "desc": "Forex Trading ၏ အခြေခံသဘောတရားများ၊ ဈေးကွက်လည်ပတ်ပုံနှင့် မဖြစ်မနေ သိထားသင့်သည့် အချက်များ။"
+  },
+  {
+    "id": 2,
+    "episode": "Episode 02",
+    "title": "Who Trade in Forex",
+    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2002%20WHO%20TRADE%20IN%20FOREX.mp4",
+    "desc": "Forex Market တွင် ပါဝင်အရောင်းအဝယ်ပြုလုပ်ကြသော Central Banks, Financial Institutions နှင့် Retail Traders များအကြောင်း။"
+  },
+  {
+    "id": 3,
+    "episode": "Episode 03",
+    "title": "Currency and Currency Pair",
+    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2003%20CURRENCY%20AND%20CURRENCY%20PAIR.mp4",
+    "desc": "Major Pairs, Minor Pairs နှင့် Exotic Pairs ခွဲခြားပုံ၊ Base Currency နှင့် Quote Currency သဘောတရားများ။"
+  },
+  {
+    "id": 4,
+    "episode": "Episode 04",
+    "title": "What is Broker",
+    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2004%20WHAT%20IS%20BROKER.mp4",
+    "desc": "Forex Broker ဆိုတာဘာလဲ၊ ယုံကြည်စိတ်ချရသော Broker ရွေးချယ်နည်းနှင့် Spread, Commission သဘောတရားများ။"
+  },
+  {
+    "id": 5,
+    "episode": "Episode 05",
+    "title": "MetaTrader 5 and Demo Account Opening",
+    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2005%20METATRADER%205%20AND%20DEMO%20TRADING%20ACCOUNT%20OPENING.mp4",
+    "desc": "MT5 Platform အသုံးပြုပုံနှင့် Demo Account စတင်ဖွင့်လှစ်ပြီး လက်တွေ့လေ့ကျင့်ပုံ အဆင့်ဆင့်။"
+  },
+  {
+    "id": 6,
+    "episode": "Episode 06",
+    "title": "Basic of Forex",
+    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISODE%2006%20BASIC%20OF%20FOREX.mp4",
+    "desc": "Pip, Lot Size, Leverage, Margin နှင့် Margin Call အစရှိသည့် မရှိမဖြစ် အခြေခံ Trading Terms များ။"
+  },
+  {
+    "id": 7,
+    "episode": "Episode 07",
+    "title": "Market Session and Orders",
+    "url": "https://pub-4f1a715cc6ec41adad06de368d9b1d8d.r2.dev/EPISDOE%2007%20MARKET%20SESSION%20AND%20ORDERS.mp4",
+    "desc": "London, New York, Tokyo Market Sessions များနှင့် Buy/Sell, Limit, Stop စသည့် Order အမျိုးအစားများ အသုံးပြုပုံ။"
+  }
+]
